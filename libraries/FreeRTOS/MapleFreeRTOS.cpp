@@ -1,7 +1,7 @@
 /******************************************************************************
  * The MIT License
  *
- * Copyright (c) 2010 LeafLabs LLC.
+ * Copyright (c) 2011 LeafLabs, LLC.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -24,21 +24,21 @@
  * SOFTWARE.
  *****************************************************************************/
 
-extern void setup(void);
-extern void loop(void);
-extern void init(void);
+#include "MapleFreeRTOS.h"
 
-// Force init to be called *first*, i.e. before static object allocation.
-// Otherwise, statically allocated objects that need libmaple may fail.
- __attribute__(( constructor (0) )) void premain() {
-    init();
+extern "C" {
+
+void vApplicationStackOverflowHook(xTaskHandle *pxTask,
+                                   signed char *pcTaskName) {
+    /* This function will get called if a task overflows its stack.
+     * If the parameters are corrupt then inspect pxCurrentTCB to find
+     * which was the offending task. */
+
+    (void) pxTask;
+    (void) pcTaskName;
+
+    while (1)
+        ;
 }
 
-int main(void) {
-    setup();
-
-    while (1) {
-        loop();
-    }
-    return 0;
 }

@@ -1,7 +1,7 @@
 /******************************************************************************
  * The MIT License
  *
- * Copyright (c) 2010 LeafLabs LLC.
+ * Copyright (c) 2011 LeafLabs, LLC.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -24,21 +24,17 @@
  * SOFTWARE.
  *****************************************************************************/
 
-extern void setup(void);
-extern void loop(void);
-extern void init(void);
+#ifndef __MAPLE_FREERTOS_H__
+#define __MAPLE_FREERTOS_H__
 
-// Force init to be called *first*, i.e. before static object allocation.
-// Otherwise, statically allocated objects that need libmaple may fail.
- __attribute__(( constructor (0) )) void premain() {
-    init();
+#include <wirish.h>
+
+extern "C" {
+#define GCC_ARMCM3
+#include "utility/FreeRTOS.h"
+#include "utility/task.h"
+#include "utility/queue.h"
+#include "utility/semphr.h"
 }
 
-int main(void) {
-    setup();
-
-    while (1) {
-        loop();
-    }
-    return 0;
-}
+#endif
