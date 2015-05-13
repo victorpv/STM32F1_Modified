@@ -60,7 +60,7 @@
 #define BOARD_SPI2_MISO_PIN       29
 #define BOARD_SPI2_SCK_PIN        30
 
-#define BOARD_NR_GPIO_PINS        35
+#define BOARD_NR_GPIO_PINS        34
 #define BOARD_NR_PWM_PINS         12
 #define BOARD_NR_ADC_PINS          9
 #define BOARD_NR_USED_PINS         4
@@ -77,46 +77,7 @@
 enum {
     PB11, PB10, PB2, PB0, PA7, PA6, PA5, PA4, PA3, PA2, PA1, PA0, PC15, PC14,
     PC13, PB7, PB6, PB5, PB4, PB3, PA15, PA14, PA13, PA12, PA11, PA10, PA9,
-    PA8, PB15, PB14, PB13, PB12, PB8, PB1, PB9
+    PA8, PB15, PB14, PB13, PB12, PB8, PB1
 };
-
-/*
-*	This section provides for conditional compiling PIN_MAP to flash or to RAM.
-*	Check board.cpp
-*/
-#if defined( PIN_MAP_TO_FLASH )
-
-	#define PIN_MAP_GPIOA &gpioa
-	#define PIN_MAP_GPIOB &gpiob
-	#define PIN_MAP_GPIOC &gpioc
-	#define PIN_MAP_GPIOD &gpiod
-	#define PIN_MAP_GPIOE &gpioe
-	#define PIN_MAP_GPIOF &gpiof
-	#define PIN_MAP_GPIOG &gpiog
-
-	#define PIN_MAP_TIMER1 &timer1
-	#define PIN_MAP_TIMER2 &timer2
-	#define PIN_MAP_TIMER3 &timer3
-	#define PIN_MAP_TIMER4 &timer4
-
-	#define PIN_MAP_ADC1 &adc1
-
-#else
-	#define PIN_MAP_GPIOA GPIOA
-	#define PIN_MAP_GPIOB GPIOB
-	#define PIN_MAP_GPIOC GPIOC
-	#define PIN_MAP_GPIOD GPIOD
-	#define PIN_MAP_GPIOE GPIOE
-	#define PIN_MAP_GPIOF GPIOF
-	#define PIN_MAP_GPIOG GPIOG
-
-	#define PIN_MAP_TIMER1 TIMER1
-	#define PIN_MAP_TIMER2 TIMER2
-	#define PIN_MAP_TIMER3 TIMER3
-	#define PIN_MAP_TIMER4 TIMER4
-
-	#define PIN_MAP_ADC1 ADC1
-#endif
-
 
 #endif

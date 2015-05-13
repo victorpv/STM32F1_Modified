@@ -77,6 +77,8 @@ public:
 	#ifdef BOOTLOADER_maple 
 	//extern USBSerial SerialUSB;
 	extern USBSerial Serial;
+	#else 
+	extern USBSerial SerialUSB;
 	#endif
 #endif
 
