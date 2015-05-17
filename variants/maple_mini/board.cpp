@@ -51,48 +51,54 @@ void boardInit(void) {
 extern "C" {
 #endif
 
+/*
+*	This section provides for conditional compiling PIN_MAP to flash or to RAM.
+*	Check board/board.h for definitions.
+*/
+
 //extern const __attribute__ ((section (".rodata"))) stm32_pin_info PIN_MAP[BOARD_NR_GPIO_PINS] = {
 extern const stm32_pin_info PIN_MAP[BOARD_NR_GPIO_PINS] = {
 
     /* Top header */
 
-    {&gpiob,   NULL, NULL, 11, 0, ADCx}, /* D0/PB11 */
-    {&gpiob,   NULL, NULL, 10, 0, ADCx}, /* D1/PB10 */
-    {&gpiob,   NULL, NULL,  2, 0, ADCx}, /* D2/PB2 */
-    {&gpiob, &timer3, &adc1,  0, 3,    8}, /* D3/PB0 */
-    {&gpioa, &timer3, &adc1,  7, 2,    7}, /* D4/PA7 */
-    {&gpioa, &timer3, &adc1,  6, 1,    6}, /* D5/PA6 */
-    {&gpioa,   NULL, &adc1,  5, 0,    5}, /* D6/PA5 */
-    {&gpioa,   NULL, &adc1,  4, 0,    4}, /* D7/PA4 */
-    {&gpioa, &timer2, &adc1,  3, 4,    3}, /* D8/PA3 */
-    {&gpioa, &timer2, &adc1,  2, 3,    2}, /* D9/PA2 */
-    {&gpioa, &timer2, &adc1,  1, 2,    1}, /* D10/PA1 */
-    {&gpioa, &timer2, &adc1,  0, 1,    0}, /* D11/PA0 */
-    {&gpioc,   NULL, NULL, 15, 0, ADCx}, /* D12/PC15 */
-    {&gpioc,   NULL, NULL, 14, 0, ADCx}, /* D13/PC14 */
-    {&gpioc,   NULL, NULL, 13, 0, ADCx}, /* D14/PC13 */
+    {PIN_MAP_GPIOB,   NULL, NULL, 11, 0, ADCx}, /* D0/PB11 */
+    {PIN_MAP_GPIOB,   NULL, NULL, 10, 0, ADCx}, /* D1/PB10 */
+    {PIN_MAP_GPIOB,   NULL, NULL,  2, 0, ADCx}, /* D2/PB2 */
+    {PIN_MAP_GPIOB, PIN_MAP_TIMER3, PIN_MAP_ADC1,  0, 3,    8}, /* D3/PB0 */
+    {PIN_MAP_GPIOA, PIN_MAP_TIMER3, PIN_MAP_ADC1,  7, 2,    7}, /* D4/PA7 */
+    {PIN_MAP_GPIOA, PIN_MAP_TIMER3, PIN_MAP_ADC1,  6, 1,    6}, /* D5/PA6 */
+    {PIN_MAP_GPIOA,   NULL, PIN_MAP_ADC1,  5, 0,    5}, /* D6/PA5 */
+    {PIN_MAP_GPIOA,   NULL, PIN_MAP_ADC1,  4, 0,    4}, /* D7/PA4 */
+    {PIN_MAP_GPIOA, PIN_MAP_TIMER2, PIN_MAP_ADC1,  3, 4,    3}, /* D8/PA3 */
+    {PIN_MAP_GPIOA, PIN_MAP_TIMER2, PIN_MAP_ADC1,  2, 3,    2}, /* D9/PA2 */
+    {PIN_MAP_GPIOA, PIN_MAP_TIMER2, PIN_MAP_ADC1,  1, 2,    1}, /* D10/PA1 */
+    {PIN_MAP_GPIOA, PIN_MAP_TIMER2, PIN_MAP_ADC1,  0, 1,    0}, /* D11/PA0 */
+    {PIN_MAP_GPIOC,   NULL, NULL, 15, 0, ADCx}, /* D12/PC15 */
+    {PIN_MAP_GPIOC,   NULL, NULL, 14, 0, ADCx}, /* D13/PC14 */
+    {PIN_MAP_GPIOC,   NULL, NULL, 13, 0, ADCx}, /* D14/PC13 */
 
     /* Bottom header */
 
-    {&gpiob, &timer4, NULL,  7, 2, ADCx}, /* D15/PB7 */
-    {&gpiob, &timer4, NULL,  6, 1, ADCx}, /* D16/PB6 */
-    {&gpiob,   NULL, NULL,  5, 0, ADCx}, /* D17/PB5 */
-    {&gpiob,   NULL, NULL,  4, 0, ADCx}, /* D18/PB4 */
-    {&gpiob,   NULL, NULL,  3, 0, ADCx}, /* D19/PB3 */
-    {&gpioa,   NULL, NULL, 15, 0, ADCx}, /* D20/PA15 */
-    {&gpioa,   NULL, NULL, 14, 0, ADCx}, /* D21/PA14 */
-    {&gpioa,   NULL, NULL, 13, 0, ADCx}, /* D22/PA13 */
-    {&gpioa,   NULL, NULL, 12, 0, ADCx}, /* D23/PA12 */
-    {&gpioa, &timer1, NULL, 11, 4, ADCx}, /* D24/PA11 */
-    {&gpioa, &timer1, NULL, 10, 3, ADCx}, /* D25/PA10 */
-    {&gpioa, &timer1, NULL,  9, 2, ADCx}, /* D26/PA9 */
-    {&gpioa, &timer1, NULL,  8, 1, ADCx}, /* D27/PA8 */
-    {&gpiob,   NULL, NULL, 15, 0, ADCx}, /* D28/PB15 */
-    {&gpiob,   NULL, NULL, 14, 0, ADCx}, /* D29/PB14 */
-    {&gpiob,   NULL, NULL, 13, 0, ADCx}, /* D30/PB13 */
-    {&gpiob,   NULL, NULL, 12, 0, ADCx}, /* D31/PB12 */
-    {&gpiob, &timer4, NULL,  8, 3, ADCx}, /* D32/PB8 */
-    {&gpiob, &timer3, &adc1,  1, 4,    9}, /* D33/PB1 */
+    {PIN_MAP_GPIOB, PIN_MAP_TIMER4, NULL,  7, 2, ADCx}, /* D15/PB7 */
+    {PIN_MAP_GPIOB, PIN_MAP_TIMER4, NULL,  6, 1, ADCx}, /* D16/PB6 */
+    {PIN_MAP_GPIOB,   NULL, NULL,  5, 0, ADCx}, /* D17/PB5 */
+    {PIN_MAP_GPIOB,   NULL, NULL,  4, 0, ADCx}, /* D18/PB4 */
+    {PIN_MAP_GPIOB,   NULL, NULL,  3, 0, ADCx}, /* D19/PB3 */
+    {PIN_MAP_GPIOA,   NULL, NULL, 15, 0, ADCx}, /* D20/PA15 */
+    {PIN_MAP_GPIOA,   NULL, NULL, 14, 0, ADCx}, /* D21/PA14 */
+    {PIN_MAP_GPIOA,   NULL, NULL, 13, 0, ADCx}, /* D22/PA13 */
+    {PIN_MAP_GPIOA,   NULL, NULL, 12, 0, ADCx}, /* D23/PA12 */
+    {PIN_MAP_GPIOA, PIN_MAP_TIMER1, NULL, 11, 4, ADCx}, /* D24/PA11 */
+    {PIN_MAP_GPIOA, PIN_MAP_TIMER1, NULL, 10, 3, ADCx}, /* D25/PA10 */
+    {PIN_MAP_GPIOA, PIN_MAP_TIMER1, NULL,  9, 2, ADCx}, /* D26/PA9 */
+    {PIN_MAP_GPIOA, PIN_MAP_TIMER1, NULL,  8, 1, ADCx}, /* D27/PA8 */
+    {PIN_MAP_GPIOB,   NULL, NULL, 15, 0, ADCx}, /* D28/PB15 */
+    {PIN_MAP_GPIOB,   NULL, NULL, 14, 0, ADCx}, /* D29/PB14 */
+    {PIN_MAP_GPIOB,   NULL, NULL, 13, 0, ADCx}, /* D30/PB13 */
+    {PIN_MAP_GPIOB,   NULL, NULL, 12, 0, ADCx}, /* D31/PB12 */
+    {PIN_MAP_GPIOB, PIN_MAP_TIMER4, NULL,  8, 3, ADCx}, /* D32/PB8 */
+    {PIN_MAP_GPIOB, PIN_MAP_TIMER3, PIN_MAP_ADC1,  1, 4,   9}, /* D33/PB1 */
+	{PIN_MAP_GPIOB, NULL, NULL,  9, 0,  ADCx}, /* PB9, reserved */
 };
 
 #ifdef __cplusplus

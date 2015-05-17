@@ -10,8 +10,8 @@
 #define sinf sin
 #endif
 
-#define NDOTS 128			// Number of dots 512
-#define SCALE 2048//4096
+#define NDOTS 256			// Number of dots 512
+#define SCALE 4096//4096
 #define INCREMENT 512//512
 #define PI2 6.283185307179586476925286766559
 #define RED_COLORS (32)
@@ -88,32 +88,22 @@ uint16_t isqrt(uint32_t a) {
     return (uint16_t) (root >> 1);
 }
 
-uint16_t asqrt(int32_t x){
-	/*      From http://medialab.freaknet.org/martin/src/sqrt/sqrt.c
-	 *	Logically, these are unsigned. We need the sign bit to test
-	 *	whether (op - res - one) underflowed.
-	 */
-	int32_t op, res, one;
+#define iter1(N) \
+    tr = root + (1 << (N)); \
+    if (n >= tr << (N))   \
+    {   n -= tr << (N);   \
+        root |= 2 << (N); \
+    }
 
-	op = x;
-	res = 0;
-
-	/* "one" starts at the highest power of four <= than the argument. */
-
-	one = 1 << 30;	/* second-to-top bit set */
-	while (one > op) one >>= 2;
-
-	while (one != 0) {
-		if (op >= res + one) {
-			op = op - (res + one);
-			res = res +  2 * one;
-		}
-		res /= 2;
-		one /= 4;
-	}
-	return (uint16_t) (res);
+uint32 asqrt (uint32 n)
+{
+    uint32 root = 0, tr;
+    iter1 (15);    iter1 (14);    iter1 (13);    iter1 (12);
+    iter1 (11);    iter1 (10);    iter1 ( 9);    iter1 ( 8);
+    iter1 ( 7);    iter1 ( 6);    iter1 ( 5);    iter1 ( 4);
+    iter1 ( 3);    iter1 ( 2);    iter1 ( 1);    iter1 ( 0);
+    return root >> 1;
 }
-
 void matrix (int16_t xyz[3][NDOTS], uint16_t col[NDOTS]){
   static uint32_t t = 0;
   int16_t x = -SCALE, y = -SCALE;

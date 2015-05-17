@@ -123,5 +123,4 @@ void cube(float *px, float *py, float *pz, float *p2x, float *p2y, int *r, uint1
   tft.drawLine(p2x[7],p2y[7],p2x[4],p2y[4],*color);
   tft.drawLine(p2x[3],p2y[3],p2x[7],p2y[7],*color);
   delay(7);
-
 }

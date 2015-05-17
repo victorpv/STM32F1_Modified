@@ -1,3 +1,12 @@
+/*	Modified 04/2015 by Victor G. Perez to add support for Maple and Maple mini, STM32F103 processors
+*	It can use SPI DMA transfers. To not use DMA, comment out the next define. 
+*	Requires function dmaSend in SPI library. Result with 16bit SPI and DMA modes enabled in Maple Mini.
+*/
+#define SPI_16BIT
+#define SPI_MODE_DMA 1
+#define SPEED_UP 1 // Enables extra calculations in the circles routine to use fastVLine and fastHLine, only in DMA mode.
+
+
 /*
 	ILI9163C - A fast SPI driver for TFT that use Ilitek ILI9163C.
 	
@@ -103,13 +112,6 @@ Done!
 
 */
 
-/*	Modified 04/2015 by Victor G. Perez to add support for Maple and Maple mini, STM32F103 processors
-*	It can use SPI DMA transfers. To not use DMA, comment out the next define. 
-*	Requires function dmaSend in SPI library. Result with 16bit SPI and DMA modes enabled in Maple Mini.
-*/
-#define SPI_16BIT
-#define SPI_MODE_DMA 1
-#define SPEED_UP 1 // Enables extra calculations in the circles routine to use fastVLine and fastHLine, only in DMA mode.
 
 /*
 Benchmark                Time (microseconds)
